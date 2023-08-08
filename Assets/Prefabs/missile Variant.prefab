@@ -34,15 +34,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 416014, guid: 1d37014fd411c524db3696bba6ff1d21, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 416014, guid: 1d37014fd411c524db3696bba6ff1d21, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.01
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 416014, guid: 1d37014fd411c524db3696bba6ff1d21, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.01
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 416014, guid: 1d37014fd411c524db3696bba6ff1d21, type: 3}
       propertyPath: m_LocalPosition.x
@@ -114,6 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   dir: {x: 0, y: 1, z: 0}
+  bulletExplosion: {fileID: 0}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!54 &-4854608499813862353
 Rigidbody:
   m_ObjectHideFlags: 0

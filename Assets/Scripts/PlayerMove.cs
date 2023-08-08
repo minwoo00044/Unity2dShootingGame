@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
         mainCamera = Camera.main;
 
         playerWidth = 0.5f;
-        playerHeight = 0.5f;
+        playerHeight = 1f;
 
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
     }

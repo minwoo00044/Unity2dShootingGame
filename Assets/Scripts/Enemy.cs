@@ -16,11 +16,12 @@ public class Enemy : MonoBehaviour
     public GameObject explosion;
     public PlayerMove playerMove;
     public int hp = 2;
+    Vector3 originalPosition;
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerMove = player.GetComponent<PlayerMove>();
-
+        originalPosition = player.transform.position;
         //30퍼 확률 만들기
         int randomValue = Random.Range(0, 10); //0~9 임의값
 
@@ -39,10 +40,12 @@ public class Enemy : MonoBehaviour
         {
             dir = (player.transform.position - transform.position).normalized;
         }
-        transform.position += dir * speed * Time.deltaTime;
+         
+        transform.position += new Vector3(dir.x, dir.y, 0) * speed * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x, transform.position.y, originalPosition.z);
 
         float dist = Vector3.Distance(Camera.main.transform.position, transform.position);
-        if(dist > Camera.main.orthographicSize * 3f)
+        if(dist > Camera.main.orthographicSize * 2.2f)
         {
             Destroy(gameObject);
         }

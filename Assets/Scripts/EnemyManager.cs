@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
         if(currentTime >= createTime)
         {
             //생성
-            Instantiate(enemy, transform);
+            GameObject CVenemy = Instantiate(enemy, transform);
             //시간 초기화
             currentTime = 0;
             createTime = Random.Range(minTime, maxTime);
