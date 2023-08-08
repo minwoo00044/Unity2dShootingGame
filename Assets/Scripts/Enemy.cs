@@ -25,27 +25,31 @@ public class Enemy : MonoBehaviour
         //30퍼 확률 만들기
         int randomValue = Random.Range(0, 10); //0~9 임의값
 
-        if(randomValue < 7)
+        if (randomValue < 7)
         {
             dir = (player.transform.position - transform.position).normalized;
         }
-        if(randomValue < 5) 
+        if (randomValue < 5)
         {
             isTracking = true;
         }
     }
     void Update()
     {
-        if(isTracking) 
+        if (isTracking)
         {
-            dir = (player.transform.position - transform.position).normalized;
+            if (player != null)
+            {
+                dir = (player.transform.position - transform.position).normalized;
+            }
+
         }
-         
+
         transform.position += new Vector3(dir.x, dir.y, 0) * speed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y, originalPosition.z);
 
         float dist = Vector3.Distance(Camera.main.transform.position, transform.position);
-        if(dist > Camera.main.orthographicSize * 2.2f)
+        if (dist > Camera.main.orthographicSize * 2.2f)
         {
             Destroy(gameObject);
         }
@@ -58,7 +62,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
         {
-            if(other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player"))
             {
                 print("충돌하여죽음");
                 playerMove.hp--;
@@ -66,7 +70,7 @@ public class Enemy : MonoBehaviour
             }
             hp--;
         }
-        if(hp < 0)
+        if (hp < 0)
         {
             GameObject explosion0 = Instantiate(explosion);
             explosion0.transform.position = transform.position;
@@ -76,11 +80,11 @@ public class Enemy : MonoBehaviour
     //충돌 중
     private void OnCollisionStay(Collision other)
     {
-        
+
     }
     //충돌 종료
     private void OnCollisionExit(Collision other)
     {
-        
+
     }
 }

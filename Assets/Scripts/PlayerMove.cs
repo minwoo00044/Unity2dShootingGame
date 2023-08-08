@@ -33,6 +33,7 @@ public class PlayerMove : MonoBehaviour
 
         if(hp < 0)
         {
+            GameManager.Instance.GameEnd();
             Destroy(gameObject);
         }
     }

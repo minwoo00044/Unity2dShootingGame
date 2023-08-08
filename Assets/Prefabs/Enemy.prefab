@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5098163710cf5b4d97bd2ce553818a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   dir: {x: 0, y: -1, z: 0}
   player: {fileID: 0}
   explosion: {fileID: 100000, guid: 5d028565f79e270408884b995abc06ef, type: 3}
