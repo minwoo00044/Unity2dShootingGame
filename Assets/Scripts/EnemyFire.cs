@@ -11,7 +11,7 @@ public class EnemyFire : MonoBehaviour
     GameObject player;
     public Vector3 dir;
     Vector3 playerDir;
-
+    public bool isShootable = true;
     public GameObject gunPos;
     // Start is called before the first frame update
     void Start()
@@ -22,17 +22,21 @@ public class EnemyFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime > createTime) 
+        if (isShootable)
         {
-            
-            dir = (player.transform.position - transform.position).normalized;
+            currentTime += Time.deltaTime;
+            if (currentTime > createTime)
+            {
+
+                dir = (player.transform.position - transform.position).normalized;
 
 
-            GameObject bulletGO = Instantiate(bullet);
-            bulletGO.transform.position = gunPos.transform.position;
+                GameObject bulletGO = Instantiate(bullet);
+                bulletGO.transform.position = gunPos.transform.position;
 
-            currentTime = 0;
+                currentTime = 0;
+            }
         }
+
     }
 }

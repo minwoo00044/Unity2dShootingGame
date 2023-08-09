@@ -13,16 +13,18 @@ public class Enemy : MonoBehaviour
     public Vector3 dir = Vector3.down;
     public GameObject player;
     bool isTracking = false;
+    public bool isMoveable = true;
     public GameObject explosion;
-    public PlayerMove playerMove;
+    private PlayerMove playerMove;
     public int hp = 2;
     Vector3 originalPosition;
-
+    EnemyFire fire;
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerMove = player.GetComponent<PlayerMove>();
         originalPosition = player.transform.position;
+        fire = GetComponent<EnemyFire>();
         //30퍼 확률 만들기
         int randomValue = Random.Range(0, 10); //0~9 임의값
 
@@ -37,22 +39,41 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (isTracking)
+        if (isMoveable)
         {
-            if (player != null)
-            {
-                dir = (player.transform.position - transform.position).normalized;
-            }
-
+            EnemyMove();
         }
-
-        transform.position += new Vector3(dir.x, dir.y, 0) * speed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, transform.position.y, originalPosition.z);
-
-        float dist = Vector2.Distance(Camera.main.transform.position, transform.position);
-        if (dist > Camera.main.orthographicSize * 1.3f)
+        
+    }
+    void EnemyMove()
+    {
+        if (player != null && fire != null)
         {
-            Destroy(gameObject);
+            if (isTracking)
+            {
+                if (player != null)
+                {
+                    dir = (player.transform.position - transform.position).normalized;
+                }
+
+            }
+            transform.position += new Vector3(dir.x, dir.y, 0) * speed * Time.deltaTime;
+            transform.position = new Vector3(transform.position.x, transform.position.y, originalPosition.z);
+
+            float dist = Vector2.Distance(Camera.main.transform.position, transform.position);
+
+            if (dist > Camera.main.orthographicSize * 1.3f)
+            {
+                fire.isShootable = false;
+                if (dist > Camera.main.orthographicSize * 2.5f)
+                {
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                fire.isShootable = true;
+            }
         }
     }
     //충돌 순간
@@ -81,13 +102,17 @@ public class Enemy : MonoBehaviour
         {
             GameObject explosion0 = Instantiate(explosion);
             explosion0.transform.position = transform.position;
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.destroyScore += 100;
+            }
             Destroy(gameObject);
         }
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.destroyScore += 100;
-        print(GameManager.Instance.attackScore);
+
+        
     }
 }
