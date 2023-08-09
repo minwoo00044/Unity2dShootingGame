@@ -45,6 +45,8 @@ public class Bullet : MonoBehaviour
             enemy.hp--;
             GameObject bulletExplosion0 = Instantiate(bulletExplosion);
             bulletExplosion0.transform.position = transform.position;
+
+            Destroy(gameObject);
         }
 
 

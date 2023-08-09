@@ -70,6 +70,11 @@ public class Enemy : MonoBehaviour
                 playerMove.hp--;
                 Destroy(gameObject);
             }
+            else if (other.gameObject.CompareTag("Bullet"))
+            {
+                GameManager.Instance.attackScore += 10;
+                print(GameManager.Instance.attackScore + "attack");
+            }
             hp--;
         }
         if (hp < 0)
@@ -79,14 +84,10 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    //충돌 중
-    private void OnCollisionStay(Collision other)
-    {
 
-    }
-    //충돌 종료
-    private void OnCollisionExit(Collision other)
+    private void OnDestroy()
     {
-
+        GameManager.Instance.destroyScore += 100;
+        print(GameManager.Instance.attackScore);
     }
 }
