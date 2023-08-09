@@ -85,7 +85,8 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
         {
 
-
+            GameObject explosion0 = Instantiate(explosion);
+            explosion0.transform.position = transform.position;
             if (other.gameObject.CompareTag("Player"))
             {
                 playerMove.hp--;
