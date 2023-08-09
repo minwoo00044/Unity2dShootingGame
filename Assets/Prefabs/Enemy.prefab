@@ -138,6 +138,7 @@ MonoBehaviour:
   explosion: {fileID: 100000, guid: 5d028565f79e270408884b995abc06ef, type: 3}
   playerMove: {fileID: 0}
   hp: 3
+  clip: {fileID: 8300000, guid: 63dc7fbc87a458145825df8e886ee930, type: 3}
 --- !u!65 &2288996600626795631
 BoxCollider:
   m_ObjectHideFlags: 0

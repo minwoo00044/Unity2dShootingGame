@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public PlayerMove playerMove;
     public int hp = 2;
     Vector3 originalPosition;
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -48,8 +49,8 @@ public class Enemy : MonoBehaviour
         transform.position += new Vector3(dir.x, dir.y, 0) * speed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y, originalPosition.z);
 
-        float dist = Vector3.Distance(Camera.main.transform.position, transform.position);
-        if (dist > Camera.main.orthographicSize * 2.2f)
+        float dist = Vector2.Distance(Camera.main.transform.position, transform.position);
+        if (dist > Camera.main.orthographicSize * 1.3f)
         {
             Destroy(gameObject);
         }
@@ -62,9 +63,10 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
         {
+
+
             if (other.gameObject.CompareTag("Player"))
             {
-                print("충돌하여죽음");
                 playerMove.hp--;
                 Destroy(gameObject);
             }

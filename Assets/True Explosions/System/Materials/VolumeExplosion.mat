@@ -38,7 +38,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ClipRange: 0.74
-    - _Displacement: 0.33928573
+    - _Displacement: 0.259
     m_Colors:
     - _ChannelFactor: {r: 0, g: 1, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

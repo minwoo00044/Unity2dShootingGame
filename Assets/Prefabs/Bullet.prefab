@@ -125,6 +125,7 @@ MonoBehaviour:
   bulletExplosion: {fileID: 100000, guid: 5d028565f79e270408884b995abc06ef, type: 3}
   player: {fileID: 0}
   enemy: {fileID: 0}
+  clip: {fileID: 8300000, guid: b18d5d807743f4b4aa55eac638760676, type: 3}
 --- !u!54 &452962340902173387
 Rigidbody:
   m_ObjectHideFlags: 0

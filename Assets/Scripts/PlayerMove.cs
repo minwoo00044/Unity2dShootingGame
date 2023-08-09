@@ -6,20 +6,11 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float speed = 5;
-    private Camera mainCamera;
-    private Vector2 screenBounds;
-    private float playerWidth;
-    private float playerHeight;
+
 
     public int hp = 10;
     void Start()
     {
-        mainCamera = Camera.main;
-
-        playerWidth = 0.5f;
-        playerHeight = 1f;
-
-        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
     }
 
 
@@ -38,11 +29,5 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void LateUpdate()
-    {
-        Vector3 viewPos = transform.position;
-        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + playerWidth, screenBounds.x - playerWidth);
-        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + playerHeight, screenBounds.y - playerHeight);
-        transform.position = viewPos;
-    }
+
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 // 목표 : 사용자 입력(Space)를 받아 총알을 만들고 싶다.
@@ -82,6 +83,15 @@ public class PlayerFire : MonoBehaviour
                 bullets[i].transform.position = gunPos.transform.position;
                 bullets[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 15f * i));
             }
+        }
+
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Item" && skillLevel < 3)
+        {
+            skillLevel++;
         }
     }
 }

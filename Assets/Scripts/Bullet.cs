@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
     public GameObject bulletExplosion;
     public GameObject player;
     public Enemy enemy;
+
+    public AudioClip clip;
     // 위로 날아가기
 
     private void Start()
@@ -32,12 +34,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(!other.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
         if (other.gameObject.CompareTag("Enemy")) 
         {
+            GameObject soundManager = GameObject.Find("SoundManager");
+            AudioSource audioSource = soundManager.GetComponent<SoundManager>().effAudioSource;
+            audioSource.clip = clip;
+            audioSource.Play();
+
             enemy = other.gameObject.GetComponent<Enemy>();
             enemy.hp--;
             GameObject bulletExplosion0 = Instantiate(bulletExplosion);

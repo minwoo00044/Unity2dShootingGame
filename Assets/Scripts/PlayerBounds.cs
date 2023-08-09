@@ -6,13 +6,13 @@ public class PlayerBounds : MonoBehaviour
     private Vector2 screenBounds;
     private float playerWidth;
     private float playerHeight;
-
+    public GameObject boundery;
     void Start()
     {
         mainCamera = Camera.main;
 
-        playerWidth = GetComponent<MeshRenderer>().bounds.extents.x;
-        playerHeight = GetComponent<MeshRenderer>().bounds.extents.y;
+        playerWidth = boundery.GetComponent<MeshRenderer>().bounds.extents.x;
+        playerHeight = boundery.GetComponent<MeshRenderer>().bounds.extents.y;
 
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
     }
